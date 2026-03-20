@@ -63,3 +63,13 @@ void loop() {
 
   delay(50);
 }
+
+int error = leftSensor - rightSensor;
+int turnDemand = abs(error);
+
+// Reduce speed when turning sharply
+int adjustedBaseSpeed = baseSpeed - (0.2 * turnDemand);
+
+if (adjustedBaseSpeed < 100) {
+  adjustedBaseSpeed = 100;
+}
